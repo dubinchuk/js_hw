@@ -1,0 +1,50 @@
+import { SalesPortalPage } from '../salesPortal.page.js';
+
+export class ProductsPage extends SalesPortalPage {
+  readonly uniqueElement = '//h2[.="Products List "]';
+
+  readonly 'Add New Product button' = 'button.page-title-header';
+  readonly 'Table row selector' = (product: string) => `//tr[./td[text()="${product}"]]`;
+  readonly 'Price by table row' = (product: string) => `${this['Table row selector'](product)}/td[2]`;
+  readonly 'Manufacturer by table row' = (product: string) => `${this['Table row selector'](product)}/td[3]`;
+  readonly 'Actions by product name' = (product: string) => `${this['Table row selector'](product)}/td[5]`;
+  readonly 'Details button by product name' = (product: string) =>
+    `${this['Actions by product name'](product)}//button[@title="Details"]`;
+  readonly 'Edit button by product name' = (product: string) =>
+    `${this['Actions by product name'](product)}//button[@title="Edit"]`;
+  readonly 'Delete button by product name' = (product: string) =>
+    `${this['Actions by product name'](product)}//button[@title="Delete"]`;
+
+  async clickOnAddNewProduct() {
+    await this.click(this['Add New Product button']);
+  }
+
+  async getDataByName(name: string) {
+    const [price, manufacturer] = await Promise.all([
+      this.getText(this['Price by table row'](name)),
+      this.getText(this['Manufacturer by table row'](name)),
+    ]);
+    return { name, price: +price.replace('$', ''), manufacturer };
+  }
+
+  async clickOnProductDetails(product: string) {
+    await this.click(this['Details button by product name'](product));
+  }
+
+  async clickOnEditProduct(product: string) {
+    await this.click(this['Edit button by product name'](product));
+  }
+
+  async clickOnDeleteProduct(product: string) {
+    await this.click(this['Delete button by product name'](product));
+  }
+
+  async findProductInTable(product: string, reverse = false) {
+    try {
+      await this.waitForElement(this['Table row selector'](product), 2000, reverse);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+}
