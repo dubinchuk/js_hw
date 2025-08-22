@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "es2022",
+    "lib": ["es2022", "dom"],
+    "types": ["node", "@wdio/globals/types", "expect-webdriverio", "@wdio/mocha-framework"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "src",
+    "wdio.conf.ts",
+    "../../../../../AQA_course/архивный код/DELETE_signIn.clients.ts",
+    "../../../../../AQA_course/архивный код/DELETE_product.clients.ts",
+    "../../../../../AQA_course/архивный код/DELETE_smoke.test.ts",
+    "../../../../../AQA_course/архивный код/DELETE_baseSignIn.clients.ts"
+  ]
+}
