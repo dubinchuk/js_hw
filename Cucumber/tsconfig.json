@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "es2022",
+    "outDir": "./dist",
+    "lib": ["es2022", "dom"],
+    "types": ["node", "@wdio/globals/types", "expect-webdriverio", "@wdio/cucumber-framework"],
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["src", "wdio.conf.ts"],
+  "exclude": ["node_modules", "allure-results", "allure-report"]
+}
